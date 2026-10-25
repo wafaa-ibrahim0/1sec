@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>كلمات متقاطعة – عصور الانتقال والدولة الوسطى</title>
+<style>
+:root{--bg:#faf7f0;--fg:#1c1810;--cell:#fff;--ac:#8a5a14;--ok:#d9f0d4;--no:#f6d3d0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1a14;--fg:#f1e9d6;--cell:#2a261d;--ac:#e0b45c;--ok:#2d4a2a;--no:#573230}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Segoe UI",Tahoma,Arial,sans-serif;padding:10px}
+h1{font-size:17px;margin:4px 0 8px;text-align:center}
+#g{display:grid;direction:rtl;margin:0 auto;width:max-content;gap:0;--s:min(9.5vw,40px)}
+.h{width:var(--s);height:var(--s);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:var(--ac)}
+.b{width:var(--s);height:var(--s);background:var(--fg);border:1px solid var(--fg)}
+.c{width:var(--s);height:var(--s);border:1.5px solid var(--fg);box-sizing:border-box;background:var(--cell)}
+.c input{width:100%;height:100%;box-sizing:border-box;border:0;background:transparent;color:var(--fg);text-align:center;font-size:18px;padding:0;font-family:inherit}
+.c input:focus{outline:2px solid var(--ac);outline-offset:-2px;background:#fff6d8;color:#000}
+.c.ok{background:var(--ok)}.c.no{background:var(--no)}
+.bar{display:flex;gap:8px;justify-content:center;margin:12px 0;flex-wrap:wrap}
+button{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:8px 14px;font-size:14px;font-family:inherit}
+h2{font-size:15px;margin:10px 0 4px;color:var(--ac)}
+ul{margin:0;padding:0;list-style:none;font-size:14px;line-height:1.8}
+ul b{color:var(--ac)}
+#msg{text-align:center;font-weight:700;min-height:20px}
+</style></head><body>
+<h1>كلمات متقاطعة 🏺 عصور الانتقال والدولة الوسطى</h1>
+<div id="msg"></div>
+<div id="g"></div>
+<div class="bar"><button id="chk">تحقق</button><button id="hint">كشف حرف</button><button id="rev">إظهار الحل</button><button id="rst">مسح</button></div>
+<h2>أفقي ⬅ (الصف، ثم ترتيب الكلمة من اليمين)</h2><ul id="A"></ul>
+<h2>رأسي ⬇ (العمود من اليمين، ثم ترتيب الكلمة من أعلى)</h2><ul id="D"></ul>
+<script>
+const D={"N": 8, "words": [{"a": "اواريس", "c": "عاصمة الهكسوس بتل الضبعة", "r": 2, "col": 2, "d": "A"}, {"a": "اقاليم", "c": "حكمها أمراء الأقاليم (مفردها إقليم)", "r": 2, "col": 2, "d": "D"}, {"a": "الاسرة", "c": "مثل الثانية عشرة: ملوك يتوارثون الحكم", "r": 4, "col": 0, "d": "A"}, {"a": "المباني", "c": "شيّد منها ملوك الدولة الوسطى الكثير", "r": 0, "col": 0, "d": "D"}, {"a": "الاعداء", "c": "طمعوا في البلاد الضعيفة", "r": 0, "col": 0, "d": "A"}, {"a": "الري", "c": "اهتم به ملوك الدولة الوسطى مع الزراعة", "r": 2, "col": 4, "d": "D"}, {"a": "امنمحات", "c": "مؤسس الأسرة الثانية عشرة", "r": 7, "col": 1, "d": "A"}, {"a": "سنوسرت", "c": "ملك عظيم من الدولة الوسطى", "r": 2, "col": 7, "d": "D"}]},N=D.N;
+const n1=s=>s.replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');
+const g=document.getElementById('g');g.style.gridTemplateColumns='repeat('+(N+1)+',auto)';
+const ans={},cells={};let dir='A',cur=null;
+D.words.forEach(w=>{for(let k=0;k<w.a.length;k++){const r=w.d=='A'?w.r:w.r+k,c=w.d=='A'?w.col+k:w.col;ans[r+','+c]=w.a[k]}});
+const mk=(cls,t)=>{const e=document.createElement('div');e.className=cls;if(t)e.textContent=t;g.appendChild(e);return e};
+mk('h','');for(let c=0;c<N;c++)mk('h',c+1);
+for(let r=0;r<N;r++){mk('h',r+1);for(let c=0;c<N;c++){const k=r+','+c;if(!ans[k]){mk('b');continue}
+ const e=mk('c'),i=document.createElement('input');i.maxLength=2;i.autocomplete='off';i.dataset.k=k;e.appendChild(i);cells[k]=i;
+ i.onfocus=()=>{if(cur===i)dir=dir=='A'?'D':'A';cur=i;i.select()};
+ i.oninput=()=>{let v=i.value.replace(/[^\u0621-\u064A]/g,'');v=v?n1(v.slice(-1)):'';i.value=v;if(v)step(i,1)};
+ i.onkeydown=e=>{if(e.key=='Backspace'&&!i.value)step(i,-1)}}}
+function step(i,s){const[r,c]=i.dataset.k.split(',').map(Number);const k=dir=='A'?r+','+(c+s):(r+s)+','+c;if(cells[k])cells[k].focus()}
+const L=['أ','ب','ج','د'];
+function list(id,t){const o=document.getElementById(id);const ws=D.words.filter(w=>w.d==t);
+ const grp={};ws.forEach(w=>{const key=t=='A'?w.r:w.col;(grp[key]=grp[key]||[]).push(w)});
+ Object.keys(grp).map(Number).sort((a,b)=>a-b).forEach(key=>{const a=grp[key].sort((x,y)=>t=='A'?x.col-y.col:x.r-y.r);
+  a.forEach((w,i)=>{const l=document.createElement('li');l.innerHTML='<b>'+(key+1)+(a.length>1?' '+L[i]:'')+'</b> – '+w.c+' ('+w.a.length+' حروف)';o.appendChild(l)})})}
+list('A','A');list('D','D');
+document.getElementById('chk').onclick=()=>{let all=true;for(const k in cells){const i=cells[k],p=i.parentNode;p.classList.remove('ok','no');if(i.value){p.classList.add(i.value==n1(ans[k])?'ok':'no');if(i.value!=n1(ans[k]))all=false}else all=false}
+ document.getElementById('msg').textContent=all?'🎉 أحسنت! حللت اللغز كاملًا':''};
+document.getElementById('hint').onclick=()=>{const t=cur&&!cur.value?cur:Object.values(cells).find(i=>!i.value);if(t){t.value=n1(ans[t.dataset.k]);t.parentNode.classList.add('ok')}};
+document.getElementById('rev').onclick=()=>{for(const k in cells)cells[k].value=n1(ans[k])};
+document.getElementById('rst').onclick=()=>{for(const k in cells){cells[k].value='';cells[k].parentNode.className='c'}document.getElementById('msg').textContent=''};
+</script></body></html>
