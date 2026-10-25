@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>كلمات متقاطعة: حضارة مصر الفرعونية</title>
+<style>
+:root{--bg:#f6f3ea;--fg:#1f2a24;--card:#fff;--g:#2e7d5b;--line:#222;--hl:#d8efe3;--cur:#ffe9a8;--ok:#b9e6c9;--bad:#f5c2c0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17201b;--fg:#eef2ee;--card:#22302a;--line:#e8e8e8;--hl:#2f5645;--cur:#6b5a1f;--ok:#2f6b47;--bad:#7a3433}}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font-family:Tahoma,"Segoe UI",Arial,sans-serif;padding:14px;max-width:560px;margin:auto}
+h1{font-size:20px;margin:6px 0;color:var(--g);text-align:center}p.s{text-align:center;margin:0 0 12px;font-size:14px;opacity:.8}
+#grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;direction:rtl;background:var(--line);border:2px solid var(--line);margin-bottom:12px}
+.cell,.blk{aspect-ratio:1;position:relative}.blk{background:var(--line)}
+.cell{background:var(--card)}.cell.hl{background:var(--hl)}.cell.cur{background:var(--cur)}.cell.ok{background:var(--ok)}.cell.bad{background:var(--bad)}
+.cell input{width:100%;height:100%;border:0;background:transparent;text-align:center;font-size:clamp(18px,6vw,28px);font-weight:700;color:var(--fg);padding:6px 0 0;font-family:inherit}
+.cell input:focus{outline:none}.cell b{position:absolute;top:1px;right:3px;font-size:10px;color:var(--g)}
+.box{background:var(--card);border-radius:12px;padding:10px 14px;margin-bottom:10px;font-size:14px;line-height:1.7}
+.box h2{font-size:15px;margin:0 0 4px;color:var(--g)}.box div{padding:3px 0;cursor:pointer}.box div.on{font-weight:700;color:var(--g)}
+.btns{display:flex;gap:8px;margin-bottom:10px}button{flex:1;padding:12px;border:0;border-radius:10px;font-size:15px;font-family:inherit;background:var(--g);color:#fff;cursor:pointer}button.alt{background:#8a6d2f}
+#msg{text-align:center;min-height:22px;font-size:14px;margin-bottom:8px}
+#ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);overflow:auto;padding:14px;z-index:20}
+#cert{background:#fffdf5;color:#3b2f10;border:6px double #b8892b;outline:2px solid #b8892b;outline-offset:-14px;max-width:520px;margin:auto;padding:34px 20px;text-align:center;border-radius:6px}
+#cert h2{font-size:30px;margin:0 0 6px;color:#9a6b12}#cert p{margin:8px 0;font-size:16px;line-height:1.9}
+#nm{width:80%;border:0;border-bottom:2px dashed #b8892b;background:transparent;text-align:center;font-size:22px;font-family:inherit;color:#3b2f10;padding:4px}
+.star{font-size:34px}.ct{max-width:520px;margin:10px auto 0;display:flex;gap:8px}
+@media print{body *{visibility:hidden}#ov,#ov *{visibility:visible}#ov{position:absolute;background:#fff;padding:0}.ct{display:none}}
+</style></head><body>
+<h1>🏺 كلمات متقاطعة: حضارة مصر الفرعونية</h1>
+<p class="s">اضغط على الخانة واكتب الحرف. حلّ اللغز بالكامل لتحصل على شهادة تقدير 🎓</p>
+<div id="grid"></div>
+<div id="msg"></div>
+<div class="btns"><button id="chk">تحقق من الحل</button><button class="alt" id="rst">إعادة</button></div>
+<div class="box"><h2>أفقي ⬅</h2><div id="ca"></div></div>
+<div class="box"><h2>رأسي ⬇</h2><div id="cd"></div></div>
+<div id="ov"><div id="cert">
+<div class="star">🏆</div><h2>شهادة تقدير</h2>
+<p>تُمنح هذه الشهادة تقديرًا وتشجيعًا للطالب/ـة</p>
+<p><input id="nm" placeholder="اكتب اسمك هنا"></p>
+<p>لتميّزه في حل لغز الكلمات المتقاطعة عن درس<br><b>«حضارة مصر الفرعونية»</b><br>(عصر الدولة الحديثة وما قبلها)</p>
+<p>نتمنى لك دوام التفوق والنجاح 🌟</p><p id="dt" style="font-size:13px"></p>
+</div><div class="ct"><button id="pr">طباعة / حفظ الشهادة</button><button class="alt" id="cl">إغلاق</button></div></div>
+<script>
+const W=[
+{n:1,d:'a',r:0,c:0,a:'الهكسوس',q:'قبائل رعوية جاءت من آسيا واحتلت شرق الدلتا ثم طردها أحمس'},
+{n:3,d:'a',r:2,c:3,a:'مجدو',q:'معركة مشهورة عام 1479 ق.م ضد حلفاء سوريا بقيادة تحتمس الثالث'},
+{n:4,d:'a',r:4,c:0,a:'تحتمس',q:'الملك الثالث من اسمه، قاد جيش مصر في تلك المعركة'},
+{n:5,d:'a',r:6,c:0,a:'نهضة',q:'اسم العصر الذي بدأ مع الأسرة 26 في العصر المتأخر (عصر ...)'},
+{n:1,d:'d',r:0,c:0,a:'اخناتون',q:'الملك الذي قام بأول ثورة دينية داعيًا لعبادة إله واحد هو آتون'},
+{n:2,d:'d',r:0,c:6,a:'سنوسرت',q:'ملك من الأسرة 12 جاء بعد أمنمحات الأول (الثالث)، وسُمّي عصره عصر الرخاء'}];
+const N=s=>s.replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي');
+const cells={},nums={};
+W.forEach(w=>{const s=w.r+','+w.c;nums[s]=w.n;[...w.a].forEach((ch,i)=>{const r=w.d=='a'?w.r:w.r+i,c=w.d=='a'?w.c+i:w.c,k=r+','+c;(cells[k]=cells[k]||{k,r,c,ch:N(ch),ws:{}}).ws[w.d]=w;});});
+const g=document.getElementById('grid');
+for(let r=0;r<7;r++)for(let c=0;c<7;c++){const k=r+','+c,o=cells[k],d=document.createElement('div');
+if(!o){d.className='blk';}else{d.className='cell';d.innerHTML=(nums[k]?'<b>'+nums[k]+'</b>':'')+'<input maxlength="2" autocomplete="off">';o.el=d;o.inp=d.querySelector('input');}g.appendChild(d);}
+let cur=null,dir='a';
+const cellsOf=w=>[...w.a].map((_,i)=>cells[(w.d=='a'?w.r:w.r+i)+','+(w.d=='a'?w.c+i:w.c)]);
+function sel(k,toggle){const o=cells[k];if(toggle&&cur==o&&o.ws.a&&o.ws.d)dir=dir=='a'?'d':'a';else if(!o.ws[dir])dir=o.ws.a?'a':'d';cur=o;draw();o.inp.focus();}
+function draw(){Object.values(cells).forEach(o=>o.el.classList.remove('hl','cur'));const w=cur.ws[dir];cellsOf(w).forEach(o=>o.el.classList.add('hl'));cur.el.classList.add('cur');
+document.querySelectorAll('.box div').forEach(e=>e.classList.toggle('on',e.dataset.id==w.d+w.n));}
+Object.values(cells).forEach(o=>{o.inp.addEventListener('focus',()=>{if(cur!==o){cur=o;if(!o.ws[dir])dir=o.ws.a?'a':'d';draw();}});
+o.el.addEventListener('click',()=>{sel(o.k,cur===o)});
+o.inp.addEventListener('input',()=>{const v=o.inp.value;o.inp.value=v.slice(-1);o.el.classList.remove('ok','bad');if(o.inp.value){const l=cellsOf(o.ws[dir]);const i=l.indexOf(o);if(l[i+1])l[i+1].inp.focus();}});
+o.inp.addEventListener('keydown',e=>{if(e.key=='Backspace'&&!o.inp.value){const l=cellsOf(o.ws[dir]),i=l.indexOf(o);if(l[i-1])l[i-1].inp.focus();}});});
+W.forEach(w=>{const e=document.createElement('div');e.dataset.id=w.d+w.n;e.textContent=w.n+'. '+w.q+' ('+[...w.a].length+' حروف)';
+e.onclick=()=>{dir=w.d;sel(w.r+','+w.c);};document.getElementById(w.d=='a'?'ca':'cd').appendChild(e);});
+sel('0,0');
+document.getElementById('chk').onclick=()=>{let all=true,any=false;Object.values(cells).forEach(o=>{const v=N(o.inp.value.trim());o.el.classList.remove('ok','bad');if(!v){all=false;return;}any=true;if(v==o.ch)o.el.classList.add('ok');else{o.el.classList.add('bad');all=false;}});
+const m=document.getElementById('msg');if(all){m.textContent='🎉 أحسنت! حللت اللغز بالكامل';document.getElementById('dt').textContent=new Date().toLocaleDateString('ar-EG');document.getElementById('ov').style.display='block';}
+else m.textContent=any?'الخانات الحمراء خاطئة، والفارغة لم تُملأ بعد. حاول مرة أخرى 💪':'ابدأ بكتابة الإجابات أولًا';};
+document.getElementById('rst').onclick=()=>{Object.values(cells).forEach(o=>{o.inp.value='';o.el.classList.remove('ok','bad');});document.getElementById('msg').textContent='';sel('0,0');};
+document.getElementById('cl').onclick=()=>document.getElementById('ov').style.display='none';
+document.getElementById('pr').onclick=()=>window.print();
+</script></body></html>
