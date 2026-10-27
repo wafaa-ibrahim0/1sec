@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>سباق المعارك</title>
+<style>
+:root{--bg:#fbf6ea;--card:#fff;--tx:#2b2216;--mu:#7a6a52;--ac:#b8862b;--ok:#2e7d4f;--no:#b23b3b;--bd:#e5d9bd;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1710;--card:#2a2318;--tx:#f3ead7;--mu:#b9a888;--ac:#e0b04f;--ok:#5fc287;--no:#e57373;--bd:#44392a}}
+:root[data-theme="dark"]{--bg:#1c1710;--card:#2a2318;--tx:#f3ead7;--mu:#b9a888;--ac:#e0b04f;--ok:#5fc287;--no:#e57373;--bd:#44392a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Segoe UI",Tahoma,"Noto Naskh Arabic",sans-serif;line-height:1.6}
+.w{max-width:520px;margin:0 auto;padding:16px}
+h1{font-size:26px;margin:8px 0;text-align:center;color:var(--ac)}
+p.s{text-align:center;color:var(--mu);margin:0 0 16px}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px;margin-bottom:12px}
+button{font:inherit;color:var(--tx);cursor:pointer}
+.lv{display:block;width:100%;text-align:right;background:var(--card);border:2px solid var(--bd);border-radius:12px;padding:14px;margin-bottom:10px}
+.lv b{display:block;font-size:18px}.lv span{color:var(--mu);font-size:14px}
+.lv:active,.o:active{transform:scale(.98)}
+.top{display:flex;justify-content:space-between;font-weight:700;margin-bottom:8px}
+.bar{height:10px;background:var(--bd);border-radius:6px;overflow:hidden;margin-bottom:14px}
+.bar i{display:block;height:100%;width:100%;background:var(--ac);transition:width .1s linear}
+.q{font-size:20px;font-weight:700;margin-bottom:14px}
+.o{display:block;width:100%;text-align:right;background:var(--card);border:2px solid var(--bd);border-radius:12px;padding:12px;margin-bottom:8px;font-size:17px}
+.o.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 22%,var(--card))}
+.o.no{border-color:var(--no);background:color-mix(in srgb,var(--no) 22%,var(--card))}
+.fb{margin-top:10px;font-size:15px;color:var(--mu)}
+.go{display:block;width:100%;background:var(--ac);color:#fff;border:0;border-radius:12px;padding:13px;font-weight:700;font-size:17px;margin-top:10px}
+.big{font-size:44px;text-align:center;margin:6px 0;color:var(--ac);font-weight:800}
+.hid{display:none}
+</style>
+</head>
+<body>
+<div class="w">
+<div id="home">
+<h1>⚔️ سباق المعارك</h1>
+<p class="s">الدولة الحديثة وطرد الهكسوس — الأسرع والأدق يكسب</p>
+<button class="lv" data-l="0"><b>🟢 مجنّد (سهل)</b><span>٥ أسئلة · ٢٠ ثانية لكل سؤال</span></button>
+<button class="lv" data-l="1"><b>🟠 قائد فرقة (متوسط)</b><span>٥ أسئلة · ١٥ ثانية لكل سؤال</span></button>
+<button class="lv" data-l="2"><b>🔴 قائد الجيش (صعب)</b><span>٧ أسئلة · ١٠ ثوانٍ لكل سؤال</span></button>
+<p class="s">لديك ٣ قلوب ❤️ · الإجابة السريعة تعطيك نقاطًا إضافية</p>
+</div>
+<div id="game" class="hid">
+<div class="top"><span id="sc">⭐ 0</span><span id="hp"></span><span id="nm"></span></div>
+<div class="bar"><i id="br"></i></div>
+<div class="c"><div class="q" id="q"></div><div id="op"></div><div class="fb" id="fb"></div><button class="go hid" id="nx">التالي ◀</button></div>
+</div>
+<div id="end" class="hid c">
+<div class="big" id="es"></div><h1 id="et" style="font-size:22px"></h1><p class="s" id="ed"></p>
+<button class="go" id="again">العب مرة أخرى</button>
+</div>
+</div>
+<script>
+const Q=[
+[
+["من قاد حركة الكفاح ضد الهكسوس؟",["أحمس","سنوسرت الثالث","أخناتون","حور محب"],0,"قاد أمراء طيبة الكفاح بقيادة أحمس حتى هزم الهكسوس."],
+["من أين جاء الهكسوس؟",["من آسيا","من بلاد بونت","من بلاد اليونان","من النوبة"],0,"الهكسوس قبائل رعوية جاءت من آسيا."],
+["ما عاصمة الهكسوس في مصر؟",["أواريس","طيبة","منف","أثيت تاوي"],0,"اتخذوا أواريس عاصمة لهم، وهي الآن تل الضبعة بالشرقية."],
+["مع من خاض رمسيس الثاني معركة قادش؟",["الحيثيين","الهكسوس","الفرس","اليونان"],0,"خاضها ضد الحيثيين في آسيا."],
+["ماذا عُقد بعد معركة قادش؟",["أول معاهدة سلام بين الطرفين","حلف عسكري ضد الفرس","اتفاقية تجارية مع بونت","لا شيء"],0,"انتهت بعقد أول معاهدة سلام بين الطرفين."]
+],[
+["ماذا حدث لمصر في عصر الانتقال الثاني؟",["احتلها الهكسوس القادمون من آسيا","وحّدها أمنمحات الأول","بنى ملوكها الأهرامات","انتصرت على الحيثيين"],0,"ضعفت البلاد فسقطت في يد الهكسوس واحتلوا مصر."],
+["ما سبب سقوط مصر في يد الهكسوس؟",["ضعف البلاد وتنازع الأمراء والملوك على السلطة","قوة الجيش المصري","كثرة الفتوحات الخارجية","ثورة دينية"],0,"ضعف البلاد بعد سقوط الأسرة ١٢ ودفع الأعداء للطمع فيها."],
+["أي معركة قادها تحتمس الثالث؟",["مجدو","قادش","أواريس","أكتيوم"],0,"قاد معركة مجدو عام ١٤٧٩ ق.م."],
+["ماذا يُسمى العصر الذي بدأ بانتصار أحمس على الهكسوس؟",["الدولة الحديثة (عصر المجد الحربي)","الانتقال الأول","الدولة الوسطى","العصر المتأخر"],0,"بدأ عهد جديد هو الدولة الحديثة ويُطلق عليه عصر المجد الحربي."],
+["ماذا فعل أحمس بعد انتصاره؟",["أصلح الداخل وكوّن جيشًا قويًا","ترك الحكم","نقل العاصمة إلى بونت","وقّع معاهدة مع الحيثيين"],0,"قام بإصلاحات داخلية وكوّن جيشًا قويًا لحماية البلاد."]
+],[
+["من قاد معركة مجدو ومن قاد معركة قادش على الترتيب؟",["تحتمس الثالث ثم رمسيس الثاني","رمسيس الثاني ثم تحتمس الثالث","أحمس ثم أخناتون","حور محب ثم أحمس"],0,"قاد تحتمس الثالث مجدو ضد حلف سوري، وقاد رمسيس الثاني قادش ضد الحيثيين."],
+["ما أبرز خصائص عصر الدولة الحديثة؟",["تكوين إمبراطورية واسعة وخوض حروب دفاعية قوية","العزلة التامة عن العالم","الاحتلال اليوناني","انتشار الفوضى والنهب"],0,"تكوين إمبراطورية مصرية واسعة خاضت حروبًا دفاعية قوية."],
+["ضد من كانت معركة مجدو؟",["حلف سوري بقيادة أمير قادش","الهكسوس","الحيثيين بقيادة ملكهم","الفرس"],0,"ضد حلف سوريا بقيادة أمير قادش."],
+["إلى أين كانت رحلات الملكة حتشبسوت التجارية؟",["بلاد بونت","بلاد اليونان","بلاد فارس","الأناضول"],0,"من مظاهر النشاط التجاري الواسع رحلات حتشبسوت إلى بلاد بونت."],
+["من القائد الذي أنهى الفوضى بعد أخناتون؟",["حور محب","أحمس","تحتمس الثالث","نخاو"],0,"قضى حور محب على الفوضى بالقوانين وأعاد الأمن والاستقرار."],
+["في أي عصر سقطت مصر في يد الهكسوس؟",["الانتقال الثاني (الأسرات ١٣–١٧)","الانتقال الأول","الدولة الوسطى","العصر المتأخر"],0,"في عصر الانتقال الثاني بعد سقوط الأسرة ١٢."],
+["ما الاحتلال الذي انتهى به العصر المتأخر؟",["اليوناني","الهكسوسي","الحيثي","الروماني"],0,"بدأ بالفارسي وانتهى باليوناني ما عدا فترة النهضة (الأسرة ٢٦)."]
+]];
+const L=[{n:"مجنّد",t:20},{n:"قائد فرقة",t:15},{n:"قائد الجيش",t:10}];
+const $=i=>document.getElementById(i);
+let lv,qs,i,score,hp,left,tm,done,corr;
+const sh=a=>{a=a.slice();for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]]}return a};
+function show(id){["home","game","end"].forEach(x=>$(x).classList.toggle("hid",x!==id))}
+function start(l){lv=l;qs=sh(Q[l]);i=0;score=0;hp=3;corr=0;$("nm").textContent=L[l].n;show("game");ask()}
+function hearts(){$("hp").textContent="❤️".repeat(hp)+"🖤".repeat(3-hp)}
+function ask(){done=false;const q=qs[i];$("sc").textContent="⭐ "+score;hearts();
+$("q").textContent=(i+1)+"/"+qs.length+" — "+q[0];$("fb").textContent="";$("nx").classList.add("hid");
+const op=$("op");op.innerHTML="";
+sh(q[1].map((t,k)=>[t,k])).forEach(([t,k])=>{const b=document.createElement("button");b.className="o";b.textContent=t;b.onclick=()=>pick(b,k);b.dataset.k=k;op.appendChild(b)});
+left=L[lv].t*10;clearInterval(tm);tick();tm=setInterval(tick,100)}
+function tick(){$("br").style.width=(left/(L[lv].t*10)*100)+"%";if(left--<=0){clearInterval(tm);if(!done)pick(null,-1)}}
+function pick(b,k){if(done)return;done=true;clearInterval(tm);const q=qs[i];
+[...$("op").children].forEach(x=>{if(+x.dataset.k===q[2])x.classList.add("ok")});
+if(k===q[2]){const bonus=Math.round(left/10)*(lv+1);score+=10*(lv+1)+bonus;corr++;$("fb").textContent="✅ أحسنت! +"+(10*(lv+1)+bonus)+" نقطة. "+q[3]}
+else{hp--;if(b)b.classList.add("no");$("fb").textContent=(k<0?"⏰ انتهى الوقت! ":"❌ خطأ. ")+q[3]}
+$("sc").textContent="⭐ "+score;hearts();
+$("nx").textContent=(hp<=0||i===qs.length-1)?"النتيجة ◀":"التالي ◀";$("nx").classList.remove("hid")}
+$("nx").onclick=()=>{if(hp<=0||i===qs.length-1)finish();else{i++;ask()}};
+function finish(){show("end");$("es").textContent="⭐ "+score;
+const r=corr/qs.length;
+$("et").textContent=hp<=0?"سقط الجيش! حاول مرة أخرى 🛡️":r===1?"قائد عظيم مثل تحتمس الثالث 👑":r>=.6?"محارب شجاع ⚔️":"تحتاج مراجعة بسيطة 📜";
+$("ed").textContent="إجاباتك الصحيحة: "+corr+" من "+qs.length}
+document.querySelectorAll(".lv").forEach(b=>b.onclick=()=>start(+b.dataset.l));
+$("again").onclick=()=>show("home");
+</script>
+</body>
+</html>
